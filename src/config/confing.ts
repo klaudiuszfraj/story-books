@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
+import path from "path";
 
 //load config
-dotenv.config({ path: `${__dirname}/.env` });
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 // server options
 const PORT = process.env.PORT || 3000;
