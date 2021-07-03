@@ -4,7 +4,14 @@ import {connectDB} from "./config/database";
 import morgan from "morgan";
 import exphbs from "express-handlebars";
 import mainRoute from './routes/';
+import authRoute from './routes/auth';
 import path from "path";
+import passport from "passport";
+import session from "express-session";
+import passportConfig from './config/passport';
+
+// Passport config
+passportConfig(passport);
 
 connectDB();
 const app = express();
@@ -16,11 +23,23 @@ app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+// session middleware
+app.use(session({
+    secret: 'secret session',
+    resave: false,
+    saveUninitialized: false,
+}))
+
+// passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 //declare static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/', mainRoute);
+app.use('/auth', authRoute);
 
 const PORT = serverConfig.PORT;
 
