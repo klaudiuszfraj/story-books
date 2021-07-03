@@ -4,12 +4,12 @@ const router = express.Router();
 
 // login route
 router.get('/', ((req, res) => {
-    res.send('Login');
+    res.render('login');
 }));
 
 //dashboard route
 router.get('/dashboard', ((req, res) => {
-    res.send('Dashboard');
+    res.render('dashboard');
 }));
 
 export default router;
