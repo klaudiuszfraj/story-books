@@ -5,8 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "start": "cross-env NODE_ENV=production node dist/app.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/app.ts",
     "test": "jest src/app.test.js"
   },
   "repository": {
