@@ -13,6 +13,7 @@ process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 // handlebars
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
+app.set('views', `${__dirname}/views`)
 
 //routes
 app.use('/', mainRoute);
