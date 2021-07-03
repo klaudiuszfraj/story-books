@@ -18,7 +18,16 @@ export const optionsDB = {
     useFindAndModify: false
 }
 
+// authorization config
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || 'defaultClientId';
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || 'defaultSecretKey';
+const GOOGLE_CLIENT_CALLBACK = process.env.GOOGLE_CLIENT_CALLBACK || 'defaultCallback';
+
+
 export default {
     PORT,
-    MONGO_URL
+    MONGO_URL,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
+    GOOGLE_CLIENT_CALLBACK
 }
