@@ -1,0 +1,6 @@
+# node modules
+node_modules
+# webstorm
+.idea
+# build
+dist
