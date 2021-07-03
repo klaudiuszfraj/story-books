@@ -4,6 +4,7 @@ import {connectDB} from "./config/database";
 import morgan from "morgan";
 import exphbs from "express-handlebars";
 import mainRoute from './routes/';
+import path from "path";
 
 connectDB();
 const app = express();
@@ -13,7 +14,10 @@ process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 // handlebars
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
-app.set('views', `${__dirname}/views`)
+app.set('views', path.join(__dirname, 'views'));
+
+//declare static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/', mainRoute);
