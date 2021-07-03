@@ -1,0 +1,28 @@
+{
+  "name": "story-books",
+  "version": "1.0.0",
+  "description": "Create public and private stories from your life",
+  "main": "app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "test": "jest src/app.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klaudiuszfraj/story-books.git"
+  },
+  "author": "Klaudiusz Frajkowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klaudiuszfraj/story-books/issues"
+  },
+  "homepage": "https://github.com/klaudiuszfraj/story-books#readme",
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "nodemon": "^2.0.9",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
