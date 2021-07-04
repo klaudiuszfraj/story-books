@@ -9,6 +9,19 @@ router.get('/add', ensureAuth, ((req, res) => {
     res.render('stories/add');
 }));
 
+// post story route
+router.post('/', ensureAuth, async (req, res) => {
+    try {
+        req.body.user = req.user.id;
+        await StoryModel.create(req.body);
+        res.redirect('/dashboard')
+    } catch (e) {
+        console.error(e);
+        res.render('error/500')
+    }
+
+});
+
 
 
 export default router;
