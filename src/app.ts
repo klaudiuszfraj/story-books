@@ -9,6 +9,7 @@ import path from "path";
 import passport from "passport";
 import session from "express-session";
 import passportConfig from './config/passport';
+import MongoStore from 'connect-mongo';
 
 // Passport config
 passportConfig(passport);
@@ -28,6 +29,9 @@ app.use(session({
     secret: 'secret session',
     resave: false,
     saveUninitialized: false,
+    store:  MongoStore.create({
+        mongoUrl: serverConfig.MONGO_URL
+    })
 }))
 
 // passport middleware
