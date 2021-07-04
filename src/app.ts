@@ -5,6 +5,7 @@ import morgan from "morgan";
 import exphbs from "express-handlebars";
 import mainRoute from './routes/';
 import authRoute from './routes/auth';
+import storiesRoute from './routes/stories';
 import path from "path";
 import passport from "passport";
 import session from "express-session";
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 app.use('/', mainRoute);
 app.use('/auth', authRoute);
+app.use('/stories', storiesRoute);
 
 const PORT = serverConfig.PORT;
 
