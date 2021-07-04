@@ -1,7 +1,7 @@
 import passport from 'passport-google-oauth20';
-import User from '../models/User';
+import User from '../models/UserModel';
 import serverConfig from './confing';
-import UserModel from '../models/User';
+import UserModel from '../models/UserModel';
 
 const GoogleStrategy = passport.Strategy;
 //todo:: correct any types
