@@ -23,12 +23,14 @@ const app = express();
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 
 // handlebars helpers
-import { formatDate } from "./helpers/hbs";
+import { formatDate, truncate, stripTags } from "./helpers/hbs";
 
 // handlebars
 app.engine('.hbs', exphbs({
     helpers: {
-        formatDate
+        formatDate,
+        truncate,
+        stripTags
     },
     defaultLayout: 'main',
     extname: '.hbs'
