@@ -12,3 +12,17 @@ export const truncate = (str:string, len:number) => {
     return str;
 };
 export const stripTags = (htmlString:string) => htmlString.replace(/<(?:.|\n)*?>/gm, '')
+
+
+//todo user any
+export const editIcon = (storyUser: { _id: { toString: () => any; }; }, loggedUser: { _id: { toString: () => any; }; }, storyId:string, floating = true) => {
+    if (storyUser._id.toString() == loggedUser._id.toString()) {
+        if (floating) {
+            return `<a href="/stories/edit/${storyId}" class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>`
+        } else {
+            return `<a href="/stories/edit/${storyId}"><i class="fas fa-edit"></i></a>`
+        }
+    } else {
+        return ''
+    }
+}

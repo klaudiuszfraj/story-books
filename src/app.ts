@@ -23,14 +23,15 @@ const app = express();
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 
 // handlebars helpers
-import { formatDate, truncate, stripTags } from "./helpers/hbs";
+import { formatDate, truncate, stripTags, editIcon } from "./helpers/hbs";
 
 // handlebars
 app.engine('.hbs', exphbs({
     helpers: {
         formatDate,
         truncate,
-        stripTags
+        stripTags,
+        editIcon
     },
     defaultLayout: 'main',
     extname: '.hbs'
@@ -55,6 +56,12 @@ app.use(session({
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// set global variable middleware
+app.use(((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+}))
 
 //declare static folder
 app.use(express.static(path.join(__dirname, 'public')));
