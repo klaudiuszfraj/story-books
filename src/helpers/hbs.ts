@@ -11,7 +11,7 @@ export const truncate = (str:string, len:number) => {
     }
     return str;
 };
-export const stripTags = (htmlString:string) => htmlString.replace(/<(?:.|\n)*?>/gm, '')
+export const stripTags = (htmlString:string) => htmlString.replace(/<(?:.|\n)*?>/gm, '');
 
 
 //todo user any
@@ -25,4 +25,17 @@ export const editIcon = (storyUser: { _id: { toString: () => any; }; }, loggedUs
     } else {
         return ''
     }
+};
+
+export const select = function (this: any, selected: any, options: any, ) {
+    return options
+        .fn(this)
+        .replace(
+            new RegExp(' value="' + selected + '"'),
+            '$& selected="selected"'
+        )
+        .replace(
+            new RegExp('>' + selected + '</option>'),
+            ' selected="selected"$&'
+        )
 }

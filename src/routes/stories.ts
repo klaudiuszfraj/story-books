@@ -37,5 +37,22 @@ router.get('/', ensureAuth, async (req, res) => {
     }
 });
 
+// edit story route
+router.get('/edit/:id', ensureAuth, async (req, res) => {
+    try {
+        const story = await StoryModel.findOne({ _id: req.params.id }).lean();
+        if (!story) {
+            return res.render('error/404');
+        }
+        if (story.user != req.user.id) {
+            res.render('/stories')
+        } else {
+            res.render('stories/edit', { story })
+        }
+    } catch (e) {
+        console.error(e);
+    }
+});
+
 
 export default router;
