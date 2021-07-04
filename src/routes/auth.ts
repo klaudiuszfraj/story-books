@@ -12,7 +12,12 @@ router.get(
     (req, res) => {
         res.redirect('/dashboard');
     }
-
 );
+
+// logout route
+router.get('/logout', ((req, res) => {
+    req.logout();
+    res.redirect('/');
+}))
 
 export default router;
