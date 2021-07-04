@@ -11,6 +11,7 @@ import passport from "passport";
 import session from "express-session";
 import passportConfig from './config/passport';
 import MongoStore from 'connect-mongo';
+import methodOverride from 'method-override';
 
 // Passport config
 passportConfig(passport);
@@ -23,7 +24,7 @@ const app = express();
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 
 // handlebars helpers
-import { formatDate, truncate, stripTags, editIcon } from "./helpers/hbs";
+import { formatDate, truncate, stripTags, editIcon, select } from "./helpers/hbs";
 
 // handlebars
 app.engine('.hbs', exphbs({
@@ -31,7 +32,8 @@ app.engine('.hbs', exphbs({
         formatDate,
         truncate,
         stripTags,
-        editIcon
+        editIcon,
+        select
     },
     defaultLayout: 'main',
     extname: '.hbs'
@@ -42,6 +44,17 @@ app.set('views', path.join(__dirname, 'views'));
 // body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// method override middleware
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        let method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
+
 
 // session middleware
 app.use(session({
