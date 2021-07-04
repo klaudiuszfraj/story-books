@@ -12,8 +12,9 @@ router.get('/', ensureGuest, ((req, res) => {
 
 //dashboard route
 router.get('/dashboard', ensureAuth, ((req, res) => {
-    console.log(req.user)
-    res.render('dashboard');
+    res.render('dashboard', {
+        name: req.user.firstName
+    });
 }));
 
 export default router;
