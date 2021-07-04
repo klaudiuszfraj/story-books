@@ -21,6 +21,7 @@ declare namespace Express {
             firstName: string;
             lastName: string;
             image: string;
+            id: string;
         }
     }
 }
