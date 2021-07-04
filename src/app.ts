@@ -17,6 +17,8 @@ passportConfig(passport);
 
 connectDB();
 const app = express();
+
+
 // morgan logging
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 
@@ -24,6 +26,10 @@ process.env.NODE_ENV === 'development' && app.use(morgan('dev'));
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
+
+// body parser middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // session middleware
 app.use(session({
